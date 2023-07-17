@@ -8,8 +8,8 @@ import (
 )
 
 func main() {
-	topic := "my-topic"        // Replace with your desired topic name
-	message := "Hello, Kafka!" // Replace with your message payload
+	topic := "my-topic"                  // Replace with your desired topic name
+	message := "Hello, Kafka to Golang!" // Replace with your message payload
 
 	sendMessageToKafka(topic, message)
 
@@ -30,7 +30,7 @@ func sendMessageToKafka(topic string, message string) {
 	}
 
 	// Create a ticker for every 5 seconds
-	ticker := time.NewTicker(5 * time.Second)
+	ticker := time.NewTicker(50 * time.Millisecond)
 	defer ticker.Stop()
 
 	for {
