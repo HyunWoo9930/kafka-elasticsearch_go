@@ -113,6 +113,5 @@ func sendElasticsearch(message string) {
 
 	// Print the response and generated document ID
 	fmt.Println("Document indexed successfully!")
-	fmt.Println("Response status:", res.Status())
-	fmt.Println("Generated DocumentID:", indexRes.ID)
+
 }
