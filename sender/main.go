@@ -2,17 +2,23 @@ package main
 
 import (
 	"log"
+	"net/http"
+	_ "net/http/pprof"
 	"time"
 
 	"github.com/Shopify/sarama"
 )
 
 func main() {
+	// Start the pprof HTTP server
+	go func() {
+		log.Println(http.ListenAndServe("localhost:6060", nil))
+	}()
+
 	topic := "my-topic"                  // Replace with your desired topic name
 	message := "Hello, Kafka to Golang!" // Replace with your message payload
 
 	sendMessageToKafka(topic, message)
-
 }
 
 func sendMessageToKafka(topic string, message string) {
@@ -30,7 +36,7 @@ func sendMessageToKafka(topic string, message string) {
 	}
 
 	// Create a ticker for every 5 seconds
-	ticker := time.NewTicker(50 * time.Millisecond)
+	ticker := time.NewTicker(5 * time.Millisecond)
 	defer ticker.Stop()
 
 	for {
